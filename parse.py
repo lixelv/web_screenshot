@@ -7,6 +7,7 @@ def create_folder_if_not_exists(folder_name):
     if not os.path.exists(folder_name):
         os.makedirs(folder_name)
 
+width = int(open('config.txt', 'r').readline())
 
 def capture_full_page_screenshot(driver, url, name=None, width=1920):
     try:
@@ -27,11 +28,12 @@ def capture_full_page_screenshot(driver, url, name=None, width=1920):
 chrome_options = Options()
 chrome_options.add_argument('--headless')
 chrome_options.add_argument('--start-maximized')
+chrome_options.add_argument('--force-dark-mode')
 
 driver = webdriver.Chrome(options=chrome_options)
 
 url = input('Введите ссылку на сайт: ')
 while url != '':
-    print(capture_full_page_screenshot(driver, url))
+    print(capture_full_page_screenshot(driver, url, width=width))
     url = input('Введите ссылку на сайт: ')
 driver.quit()
