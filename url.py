@@ -31,6 +31,7 @@ def find_max_numbered_file(directory_path):
 def capture_full_page_screenshot(driver, url, path='image', width=1920):
     url = url if url[:4] in ['file', 'http'] else 'http://'+url
     try:
+        create_folder_if_not_exists(path)
         start_time = time.perf_counter()
         driver.get(url)
         title = driver.title
